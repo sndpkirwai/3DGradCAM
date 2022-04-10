@@ -1,13 +1,19 @@
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+tf.disable_v2_behavior()
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
+from keras import backend as K
+
+K.set_session(sess)
+
 import numpy as np
 from keras import backend as K
-from keras.models import Sequential, model_from_json
 from keras.layers import Lambda
 from tensorflow.python.framework import ops
 from scipy.ndimage.interpolation import zoom
 import keras
-import tempfile
-import os
 
 
 def loss_calculation(x, category_index, nb_classes):
@@ -70,7 +76,7 @@ def modifyBackprop(model, name, ld_model_fn, model_no, channels, activation, vox
             if layer.activation == keras.activations.relu:
                 layer.activation = tf.nn.relu
     model = ld_model_fn(model_no, channels, activation, voxelCount, nbClasses)
-    model.load_weights('log/weights/model%s_%schannel_%sactivation_%svoxel_count_%sclasses.h5' % (model_no, channels, activation, voxelCount, nbClasses))
+    model.load_weights('weights/model%s_%schannel_%sactivation_%svoxel_count_%sclasses.h5' % (model_no, channels, activation, voxelCount, nbClasses))
     #   Popping the softmax layer as it creates ambiguity in the explanation
     model.pop()
     return model

@@ -1,14 +1,14 @@
-import keras
-from keras.models import Sequential
-from keras.preprocessing.image import ImageDataGenerator
-from keras.utils import np_utils, generic_utils
-from keras.optimizers import SGD, RMSprop
-from keras.layers.core import Dense, Dropout, Activation, Flatten, Reshape, Layer
-from keras.layers.convolutional import Convolution3D, MaxPooling3D, UpSampling3D, ZeroPadding3D, AveragePooling3D
-from keras.layers.noise import GaussianNoise
-from keras.layers.advanced_activations import LeakyReLU, PReLU, ELU
-from keras.layers.normalization import BatchNormalization
-from keras.regularizers import l1, l2
+# import keras
+from tensorflow.keras.models import Sequential
+# from tensorflow.keras.preprocessing.image import ImageDataGenerator
+# from tensorflow.keras.utils import np_utils, generic_utils
+# from tensorflow.keras.optimizers import SGD, RMSprop
+from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Reshape, Layer
+from tensorflow.keras.layers import Convolution3D, MaxPooling3D, UpSampling3D, ZeroPadding3D, AveragePooling3D
+# from tensorflow.keras.layers.noise import GaussianNoise
+from tensorflow.keras.layers import LeakyReLU, PReLU, ELU
+from tensorflow.keras.layers import BatchNormalization
+# from tensorflow.keras.regularizers import l1, l2
 
 
 def _loadModel(model_no, channels, activation, voxel_count, nb_classes):
