@@ -77,7 +77,7 @@ if __name__ == '__main__':
     saliency_fn = compileSaliencyFunction(cnnModel, _loadModel, model_no, channels, activation, voxelCount, nbClasses, activation_layer=-4)
 
     if example_no == "all":
-        list_raw = glob.glob("Examples\inouts\*.raw")
+        list_raw = glob.glob("Examples\inouts\*.mat")
         for fileidx, filename in enumerate(list_raw):
             array = np.zeros((1, voxelCount, voxelCount, voxelCount, channels))
             for c in range(channels):
@@ -93,7 +93,7 @@ if __name__ == '__main__':
             finalOutput *= 255.0
             finalOutput.astype('uint8').tofile("GradCAM_outputs\\" + filename)
     else:
-        filename = "Examples/inouts/" + example_no + ".raw"
+        filename = "Examples/inouts/" + example_no + ".mat"
         array = np.zeros((1, voxelCount, voxelCount, voxelCount, channels))
         for c in range(channels):
             loadFile(array, filename, voxelCount, voxelCount, voxelCount, c)
